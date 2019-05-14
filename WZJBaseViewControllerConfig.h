@@ -23,4 +23,11 @@ typedef void (^LoadEndCallBack)(int state);
 -(void)pullUpLoadMore:(LoadEndCallBack)callBack;
 @end
 
+@protocol BaseCellConfig<NSObject>
+-(void)configCell:(id)cellItem;
+@end
+
+#import "WZJBaseCollectionViewController.h"
+#import "WZJBaseTableViewController.h"
+#import "WZJBaseViewController.h"
 #endif /* WZJBaseViewControllerConfig_h */

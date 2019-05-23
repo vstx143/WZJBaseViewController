@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
 spec.name         = "WZJBaseViewController"
-spec.version      = "1.0.0"
+spec.version      = "1.0.1"
 spec.summary      = "Base Controller Class of TableView and CollectionView "
 spec.description  = <<-DESC
 BaseViewController
@@ -22,5 +22,7 @@ spec.platform     = :ios, "8.0"
 spec.source       = { :git => "https://github.com/vstx143/WZJBaseViewController.git", :tag => "#{spec.version}" }
 spec.source_files  = "WZJBaseViewController", "*.{h,m}"
 spec.requires_arc = true
+spec.dependency "DZNEmptyDataSet"
+spec.dependency "MJRefresh"
 end
 

@@ -39,7 +39,7 @@
     if (className.length == 0) {
         return;
     }
-    NSAssert([params isKindOfClass:[NSObject class]], @"参数需要NSObject对象");
+
     
     Class class = NSClassFromString(className);
     if (class) {
@@ -78,7 +78,7 @@
     if (className.length == 0) {
         return;
     }
-    NSAssert([params isKindOfClass:[NSObject class]], @"参数需要NSObject对象");
+
     
     Class class = NSClassFromString(className);
     if (class) {

@@ -9,7 +9,7 @@
 #import "WZJBaseTableViewController.h"
 #import <MJRefresh/MJRefresh.h>
 @interface WZJBaseTableViewController ()
-
+@property(assign)WRefreshType type;
 @end
 
 @implementation WZJBaseTableViewController
@@ -66,10 +66,20 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     return nil;
 }
+-(void)startRequest{
+    if (self.type == WRefreshTypeAll || self.type == WRefreshTypePullDown) {
+        [self.w_tableView.mj_header beginRefreshing];
+    }else{
+        [self.w_tableView.mj_footer beginRefreshing];
+    }
+}
 #pragma mark --- r刷新状态
 -(void)pullUpLoadMore:(LoadEndCallBack)callBack{}
 -(void)pullDownRefresh:(LoadEndCallBack)callBack{}
 -(void)addRefreshFunction:(WRefreshType) refreshType{
+    //
+    self.type = refreshType;
+    //
     __weak typeof(&*self)weakSelf = self;
     switch (refreshType) {
         case WRefreshTypeAll:
@@ -79,6 +89,9 @@
                     [self.refreshDelegate pullDownRefresh:^(int state) {
                             [weakSelf.w_tableView.mj_header endRefreshing];
                     }];
+                }
+                if (self.w_tableView.mj_footer != nil) {
+                    [self.w_tableView.mj_footer resetNoMoreData];
                 }
             }];
             

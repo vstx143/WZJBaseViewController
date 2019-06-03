@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) int currentPage;
 @property(nonatomic,weak) id<BaseRefreshDelegate> refreshDelegate;
 -(void)addRefreshFunction:(WRefreshType) refreshType;
-
+-(void)startRequest;
 
 @end
 

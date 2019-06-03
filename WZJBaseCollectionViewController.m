@@ -9,7 +9,7 @@
 #import "WZJBaseCollectionViewController.h"
 #import <MJRefresh/MJRefresh.h>
 @interface WZJBaseCollectionViewController ()
-
+@property(assign)WRefreshType type;
 @end
 
 @implementation WZJBaseCollectionViewController
@@ -54,10 +54,20 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeZero;
 }
+-(void)startRequest{
+    if (self.type == WRefreshTypeAll || self.type == WRefreshTypePullDown) {
+        [self.w_tableView.mj_header beginRefreshing];
+    }else{
+        [self.w_tableView.mj_footer beginRefreshing];
+    }
+}
 #pragma mark --- r刷新状态
 -(void)pullUpLoadMore:(LoadEndCallBack)callBack{}
 -(void)pullDownRefresh:(LoadEndCallBack)callBack{}
 -(void)addRefreshFunction:(WRefreshType) refreshType{
+    //
+    self.type = refreshType;
+    //
     __weak typeof(&*self)weakSelf = self;
     switch (refreshType) {
         case WRefreshTypeAll:
@@ -67,6 +77,9 @@
                     [self.refreshDelegate pullDownRefresh:^(int state) {
                         [weakSelf.w_collectionView.mj_header endRefreshing];
                     }];
+                }
+                if (self.w_collectionView.mj_footer != nil) {
+                    [self.w_collectionView.mj_footer resetNoMoreData];
                 }
             }];
             

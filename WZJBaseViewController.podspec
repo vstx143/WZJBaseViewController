@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
 spec.name         = "WZJBaseViewController"
-spec.version      = "1.0.0"
+spec.version      = "1.0.1"
 spec.summary      = "Base Controller Class of TableView and CollectionView "
 spec.description  = <<-DESC
 BaseViewController

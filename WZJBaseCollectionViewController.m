@@ -56,9 +56,9 @@
 }
 -(void)startRequest{
     if (self.type == WRefreshTypeAll || self.type == WRefreshTypePullDown) {
-        [self.w_tableView.mj_header beginRefreshing];
+        [self.w_collectionView.mj_header beginRefreshing];
     }else{
-        [self.w_tableView.mj_footer beginRefreshing];
+        [self.w_collectionView.mj_footer beginRefreshing];
     }
 }
 #pragma mark --- r刷新状态

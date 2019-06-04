@@ -55,7 +55,7 @@
     return CGSizeZero;
 }
 -(void)startRequest{
-    if (self.type == WRefreshTypeAll || self.type == WRefreshTypePullDown) {
+    if (self.type == WRefreshTypePullDown) {
         [self.w_collectionView.mj_header beginRefreshing];
     }else{
         [self.w_collectionView.mj_footer beginRefreshing];

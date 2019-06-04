@@ -55,7 +55,7 @@
     return CGSizeZero;
 }
 -(void)startRequest{
-    if (self.type == WRefreshTypePullDown) {
+    if (self.type == WRefreshTypeAll || self.type == WRefreshTypePullDown) {
         [self.w_collectionView.mj_header beginRefreshing];
     }else{
         [self.w_collectionView.mj_footer beginRefreshing];
@@ -76,6 +76,9 @@
                 if (self.refreshDelegate && [self respondsToSelector:@selector(pullDownRefresh:)]) {
                     [self.refreshDelegate pullDownRefresh:^(int state) {
                         [weakSelf.w_collectionView.mj_header endRefreshing];
+                        if (self.w_collectionView.mj_footer != nil && state ==MJRefreshStateNoMoreData ) {
+                            [self.w_collectionView.mj_footer endRefreshingWithNoMoreData];
+                        }
                     }];
                 }
                 if (self.w_collectionView.mj_footer != nil) {

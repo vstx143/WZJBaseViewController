@@ -85,22 +85,22 @@
         case WRefreshTypeAll:
         {
             self.w_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                if (self.refreshDelegate && [self respondsToSelector:@selector(pullDownRefresh:)]) {
-                    [self.refreshDelegate pullDownRefresh:^(int state) {
+                if (weakSelf.refreshDelegate && [weakSelf respondsToSelector:@selector(pullDownRefresh:)]) {
+                    [weakSelf.refreshDelegate pullDownRefresh:^(int state) {
                             [weakSelf.w_tableView.mj_header endRefreshing];
-                        if (self.w_tableView.mj_footer != nil && state ==MJRefreshStateNoMoreData ) {
-                            [self.w_tableView.mj_footer endRefreshingWithNoMoreData];
+                        if (weakSelf.w_tableView.mj_footer != nil && state ==MJRefreshStateNoMoreData ) {
+                            [weakSelf.w_tableView.mj_footer endRefreshingWithNoMoreData];
                         }
                     }];
                 }
-                if (self.w_tableView.mj_footer != nil) {
-                    [self.w_tableView.mj_footer resetNoMoreData];
+                if (weakSelf.w_tableView.mj_footer != nil) {
+                    [weakSelf.w_tableView.mj_footer resetNoMoreData];
                 }
             }];
             
             self.w_tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-                if (self.refreshDelegate && [self respondsToSelector:@selector(pullUpLoadMore:)]) {
-                    [self.refreshDelegate pullUpLoadMore:^(int state) {
+                if (weakSelf.refreshDelegate && [weakSelf respondsToSelector:@selector(pullUpLoadMore:)]) {
+                    [weakSelf.refreshDelegate pullUpLoadMore:^(int state) {
                         if (state == MJRefreshStateNoMoreData) {
                             [weakSelf.w_tableView.mj_footer endRefreshingWithNoMoreData];
                         } else {
@@ -113,7 +113,7 @@
             break;
         case WRefreshTypePullUp:{
             self.w_tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-                if (self.refreshDelegate && [self respondsToSelector:@selector(pullUpLoadMore:)]) {
+                if (weakSelf.refreshDelegate && [weakSelf respondsToSelector:@selector(pullUpLoadMore:)]) {
                     [self.refreshDelegate pullUpLoadMore:^(int state) {
                         if (state == MJRefreshStateNoMoreData) {
                             [weakSelf.w_tableView.mj_footer endRefreshingWithNoMoreData];
@@ -127,8 +127,8 @@
             break;
         case WRefreshTypePullDown:{
             self.w_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                if (self.refreshDelegate && [self respondsToSelector:@selector(pullDownRefresh:)]) {
-                    [self.refreshDelegate pullDownRefresh:^(int state) {
+                if (weakSelf.refreshDelegate && [weakSelf respondsToSelector:@selector(pullDownRefresh:)]) {
+                    [weakSelf.refreshDelegate pullDownRefresh:^(int state) {
                         [weakSelf.w_tableView.mj_header endRefreshing];
                     }];
                 }

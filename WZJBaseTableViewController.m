@@ -114,7 +114,7 @@
         case WRefreshTypePullUp:{
             self.w_tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
                 if (weakSelf.refreshDelegate && [weakSelf respondsToSelector:@selector(pullUpLoadMore:)]) {
-                    [self.refreshDelegate pullUpLoadMore:^(int state) {
+                    [weakSelf.refreshDelegate pullUpLoadMore:^(int state) {
                         if (state == MJRefreshStateNoMoreData) {
                             [weakSelf.w_tableView.mj_footer endRefreshingWithNoMoreData];
                         } else {
